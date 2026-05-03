@@ -1,0 +1,46 @@
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+.content h1 {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: fadeUp 3.0s ease forwards;
+  margin : 0 0 5px 0;
+}
+
+.content h2 {
+  opacity: 0;
+  transform: translateY(100px);
+  animation: fadeUp 3.0s ease forwards;
+  animation-delay: 1.5s;
+  margin : 0 0 0 0;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
