@@ -3,9 +3,9 @@ import * as THREE from "three"
 
 const scene = new THREE.Scene();
 
-
+let target_z= 45;
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 45;
+camera.position.z = 100;
 
 const canvas = document.querySelector("#bg");
 
@@ -14,13 +14,12 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
-const particleCount = 100000;
-
+const particleCount = 400000;
 const positions = new Float32Array(particleCount * 3);
 const colors = new Float32Array(particleCount * 3);
 
 
-let radius_initial = 25;
+let radius_initial = 300;
 let curr_radius = 0;
 let curr_theta_angle = 0;
 let curr_phi_angle = 0;
@@ -112,7 +111,7 @@ function updateParticles(dt) {
     let y = positions[index + 1];
     let z = positions[index + 2];
 
-    let brightness = Math.min(1,(0.005* (x*x+y*y))**2);
+    let brightness = Math.min(1,(0.005* (x*x/15+y*y))**2);
 
     colors[index + 0] = brightness; // r
     colors[index + 1] = brightness; // g
@@ -140,6 +139,7 @@ function updateParticles(dt) {
   }
 
   geometry.attributes.position.needsUpdate = true;
+  geometry.attributes.color.needsUpdate = true;
 }
 
 
@@ -149,6 +149,8 @@ function animate() {
 
   const dt = clock.getDelta();
   time += dt;
+
+  camera.position.z += (target_z - camera.position.z) * dt;
 
   updateParticles(dt);
 

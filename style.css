@@ -8,7 +8,32 @@
   z-index: -1;
 }
 
-.content {
+body
+{
+  font-family: 'Orbitron', sans-serif;
+}
+
+a {
+  position: relative;
+  z-index: 1;
+  color: white;
+  justify-content: center;
+  text-align: center;
+}
+
+#main {
+  position: relative; /* Ensures it sits on top of the fixed canvas */
+  min-height: 100vh;
+  /*background: rgba(0, 0, 0, 0.8); /* Semi-transparent black so you can still see the stars */
+  color: white;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.hero {
   position: relative;
   z-index: 1;
 
@@ -23,14 +48,14 @@
   text-align: center;
 }
 
-.content h1 {
+.hero h1 {
   opacity: 0;
   transform: translateY(100px);
   animation: fadeUp 3.0s ease forwards;
   margin : 0 0 5px 0;
 }
 
-.content h2 {
+.hero h2 {
   opacity: 0;
   transform: translateY(100px);
   animation: fadeUp 3.0s ease forwards;
