@@ -126,7 +126,7 @@ function updateParticles(dt) {
     let xt = x * Math.cos(drift_angle) - z * Math.sin(drift_angle);
     let zt = x * Math.sin(drift_angle) + z * Math.cos(drift_angle);
 
-    let brightness = Math.min(1,(0.005* (x*x/15+y*y))**2);
+    let brightness = Math.min(1,(0.005* ((x-10)*(x-10)/15+y*y))**2);
 
     colors[index + 0] = brightness; // r
     colors[index + 1] = brightness; // g
@@ -155,9 +155,9 @@ function updateParticles(dt) {
         dy = dyt;
         dz = -dxt * sinA + dzt * cosA;
 
-        dx += (mouseAttractor.x - x) * 0.5;
-        dy += (mouseAttractor.y - y) * 0.5;
-        dz += (mouseAttractor.z - z) * 0.5;
+        dx += (mouseAttractor.x - x) * 1.5;
+        dy += (mouseAttractor.y - y) * 1.5;
+        dz += (mouseAttractor.z - z) * 1.5;
     }
 
 
