@@ -1,0 +1,70 @@
+body{
+    background-image: url(images/black_speckled_bg.webp);
+    color: white;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Archivo Black', monospace;
+    min-height: 100vh;
+}
+
+h2{
+    font-size: 35px;
+}
+
+/* formatting the entire scroll div */
+.scroll{
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    /* overflow: hidden; */
+}
+
+/* formatiing individual cards */
+.card{
+    position: absolute;
+    width: 393px;
+    height: 550px;
+    text-align: center;
+    border-radius: 15px;
+    border: 5px solid white;
+    background-color: black;
+    padding: 5px;
+    /* font-size: 20px; */
+
+    /* transition:0.5s; */
+    left: 50%;
+    transform: translateX(-50%);
+    /* top:0; */
+}
+
+/* # is used for ids while . is used for classes */
+#next, #back{
+    position: absolute;
+    top: 40%;
+    color: white;
+    /* border-radius: 100%;
+    background-color: black;
+    border: 4px solid white; */
+    border: none;
+    background-color: transparent;
+    font-size: 50px;
+    font-family: 'Archivo Black', monospace;
+    
+    left: 50px;
+}
+#next{
+    left: unset;
+    right: 50px;
+}
+
+
+/* Adding the sims */
+.fractal{
+    width: 360px;
+    height: 360px;
+    background-image: url("images/fractal.gif");
+    transform: translateX(4.5%);
+    padding: 0px;
+}
