@@ -1,0 +1,66 @@
+body{
+    height: 100vh;
+    background: url(../Cards_scroll/images/black_speckled_bg.webp);
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Archivo Black', monospace;
+}
+
+
+/* Adding the sims */
+.fractal{
+    width: 360px;
+    height: 360px;
+    background-image: url("../Cards_scroll/images/fractal.gif");
+    transform: translateX(4.5%);
+    padding: 0px;
+}
+
+.deck{
+    position: relative;
+    width: 100%;
+    height: 80vh;
+}
+
+/* the cards are created in the JS file */
+.card{
+    position: absolute;
+    transform-origin: bottom center;
+    width: 393px;
+    height: 550px;
+    text-align: center;
+    border-radius: 15px;
+    border: 5px solid white;
+    background-color: black;
+    color: white;
+    padding: 5px;
+
+    left: 50%;
+    top: 50%;
+
+    transition: transform 0.25s ease-out;
+    transform: translate(-50%, -50%);
+}
+
+.swipeLeft{
+    animation: leftSwipe 0.5s ease-out;
+}
+.swipeRight{
+    animation: rightSwipe 0.5s ease-out;
+}
+
+
+/* -----ANIMATIONS-------------------------------------------------------- */
+@keyframes leftSwipe {
+    /* from{ transform: translate(-50%, -50%) translateX(0); opacity: 1;} */
+    from{opacity: 0;}
+    to{ transform: translate(-50%, -50%) translateX(-100vw); opacity: 0;}
+}
+
+@keyframes rightSwipe {
+    from{ transform: translate(-50%, -50%) translateX(0); opacity: 1;}
+    to{ transform: translate(-50%, -50%) translateX(100vw); opacity: 0;}
+}
