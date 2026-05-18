@@ -5,7 +5,7 @@ class Boid {
         this.velocity.setMag(random(2, 4));
         this.acceleration = createVector(0,0);
         this.maxForce = 0.2;
-        this.maxSpeed = 4;
+        this.maxSpeed = 5;
     }
 
     walls(){
@@ -18,7 +18,7 @@ class Boid {
     // Aligns this boid with the average of the other boids in the given array (boids in the radius x)
     align(boids){
         //alignment.mult(alignment_slider.value());
-        let view = 30; 
+        let view = radius_slider.value();  //this is the radius that 'this' is seeing
         let average = createVector();
         let boids_near = 0;
         for (let other of boids){ //loops over elements in boids
@@ -38,14 +38,14 @@ class Boid {
     }
 
     separation(boids){
-        let view = 15; 
+        let view = radius_slider.value();  //this is the radius that 'this' is seeing
         let average = createVector();
         let boids_near = 0;
         for (let other of boids){ //loops over elements in boids
             let d = Math.sqrt(((this.position.x - other.position.x)**2) + ((this.position.y - other.position.y)**2));
             if (other != this && d < view){
                 let difference = p5.Vector.sub(this.position, other.position);
-                difference.div(d**2); //inversly proportional to the distance -> the farther the lower the pull/push
+                difference.div(d); //inversly proportional to the distance -> the farther the lower the pull/push
                 average.add(difference);
                 boids_near +=1;
             }
@@ -54,14 +54,14 @@ class Boid {
             average.div(boids_near); //vector division, not /=
             average.setMag(this.maxSpeed);
             average.sub(this.velocity);
-            average.limit(this.maxForce * 1.3); //caps the amount of force that can be applied
+            average.limit(this.maxForce); //caps the amount of force that can be applied
         } //the average velocity is the boids desired velocity/the steering force
         return average;
     }
 
     //Copy of align code except matches position rather than velocity
     cohesion(boids){
-        let view = 30;
+        let view = radius_slider.value();  //this is the radius that 'this' is seeing
         let average = createVector();
         let boids_near = 0;
         for (let other of boids){ //loops over elements in boids
@@ -87,9 +87,9 @@ class Boid {
         let separation = this.separation(num_boids);
 
 // Scale them according to the slider
-        // alignment.mult(alignment_slider.value());
-        // cohesion.mult(cohesion_slider.value());
-        // separation.mult(separation_slider.value());
+        alignment.mult(alignment_slider.value());
+        cohesion.mult(cohesion_slider.value());
+        separation.mult(separation_slider.value());
 
         //this.acceleration = alignment; //in a world where m=1, F=A
         //this.acceleration = cohesion;
@@ -99,7 +99,7 @@ class Boid {
     }
 
     update(){
-        // this.maxSpeed = speed_slider.value();
+        this.maxSpeed = speed_slider.value();
         this.position.add(this.velocity);
         this.velocity.add(this.acceleration);
         this.velocity.limit(this.maxSpeed);
