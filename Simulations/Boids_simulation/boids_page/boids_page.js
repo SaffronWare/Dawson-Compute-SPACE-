@@ -5,7 +5,7 @@ class Boid {
         this.velocity.setMag(random(2, 4));
         this.acceleration = createVector(0,0);
         this.maxForce = 0.2;
-        this.maxSpeed = 5;
+        this.maxSpeed = 5.0;
     }
 
     walls(){
@@ -106,16 +106,26 @@ class Boid {
         this.acceleration.set(0,0); //acceleration shouldn't accumulate over time
     }
 
-    show(){
-        fill(255);
-        stroke(255);
-
+    show(index, highlight_on){
         let angle = this.velocity.heading(); //returns direction angle in rad
-        push();
-        translate(this.position.x, this.position.y);
-        rotate(angle);
-        triangle(6,0, -8,4, -8,-4);
-        pop();
+        if (highlight_on && index === school.length-1){
+            fill(255, 23, 135);
+            stroke(255, 23, 135);
+            push();
+            translate(this.position.x, this.position.y);
+            rotate(angle);
+            triangle(8,0, -10,6, -10,-6);
+            pop();
+        }
+        else{
+            fill(255);
+            stroke(255);
+            push();
+            translate(this.position.x, this.position.y);
+            rotate(angle);
+            triangle(6,0, -8,4, -8,-4);
+            pop();
+        }
     }
 
 }
