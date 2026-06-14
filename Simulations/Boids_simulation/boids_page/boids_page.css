@@ -3,7 +3,8 @@ body{
     font-family: 'Courier New', Courier, monospace;
     padding: 0;
     margin: 0;
-    width: 720px;
+    /* width: 720px; */
+    width: 100%;
 }
 
 .slider{
@@ -24,3 +25,11 @@ body{
     margin: 0, 10px, 10px, 20px;
     vertical-align: middle;
 }
+
+/* .slider-group{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+} */
